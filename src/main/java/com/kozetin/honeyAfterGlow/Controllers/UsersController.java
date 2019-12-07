@@ -40,7 +40,8 @@ public class UsersController {
 
         if (!userService.editUser(email, form, user)) {
             model.addAttribute("message","Email is empty");
-            return "userEdit";
+            model.addAttribute("userslist",userRepository.findAll());
+            return "users";
         }
 
         return "redirect:/users";
