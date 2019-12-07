@@ -75,7 +75,7 @@
             <th scope="row" th:text="${user.id}"/>
             <td th:text="${user.email}"/>
             <td th:each="role : ${user.roles}"><p th:text="${role}"/></td>
-            <td><a th:href="'/user/'+${user.id}">Изменить</a></td>
+            <td><a th:href="'/users/'+${user.id}">Изменить</a></td>
         </tr>
         </tbody>
     </table>
