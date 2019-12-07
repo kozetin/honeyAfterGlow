@@ -3,6 +3,7 @@ package com.kozetin.honeyAfterGlow.Controllers;
 import com.kozetin.honeyAfterGlow.Domain.Role;
 import com.kozetin.honeyAfterGlow.Domain.User;
 import com.kozetin.honeyAfterGlow.Repository.UserRepository;
+import com.kozetin.honeyAfterGlow.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,9 @@ import java.util.Map;
 public class UsersController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public String users(Model model) {
@@ -32,9 +36,12 @@ public class UsersController {
     }
 
     @PostMapping
-    public String userEdit(@RequestParam String email, @RequestParam Map<String, String> form, @RequestParam("userId") User user) {
+    public String userEdit(Model model, @RequestParam String email, @RequestParam Map<String, String> form, @RequestParam("userId") User user) {
 
-        //there will be userservice function
+        if (!userService.editUser(email, form, user)) {
+            model.addAttribute("message","Email is empty");
+            return "userEdit";
+        }
 
         return "redirect:/users";
 
