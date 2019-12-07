@@ -61,6 +61,11 @@
             </ul>
         </div>
     </nav>
+
+    <div th:if="${message}" class="alert alert-danger" role="alert">
+        <p th:text="${message}"/>
+    </div>
+
     <table class="table table-hover my-3">
         <thead>
         <tr>
