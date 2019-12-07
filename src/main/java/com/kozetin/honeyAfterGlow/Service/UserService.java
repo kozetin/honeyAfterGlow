@@ -9,7 +9,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -30,6 +34,25 @@ public class UserService implements UserDetailsService {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+        userRepository.save(user);
+
+        return true;
+    }
+
+    public Boolean editUser (String email, Map<String,String> form, User user) {
+        if (email.isEmpty() || email==null) { return false; } else {
+            user.setEmail(email);
+        }
+
+        Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
+        user.getRoles().clear();
+
+        for (String key : form.keySet()) {
+            if (roles.contains(key)) {
+                user.getRoles().add(Role.valueOf(key));
+            }
+        }
+
         userRepository.save(user);
 
         return true;
