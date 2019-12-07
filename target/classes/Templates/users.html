@@ -34,10 +34,10 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Бомбочки для ванн </a>
                 </li>
-                <li class="nav-item active"> <!--sec:authorize="hasRole('ADMIN')"-->
+                <li class="nav-item active"sec:authorize="hasAuthority('ADMIN')">
                     <a class="nav-link" href="/users">Пользователи </a>
                 </li>
-                <li class="nav-item active"> <!--sec:authorize="hasRole('ADMIN')"-->
+                <li class="nav-item active"sec:authorize="hasAuthority('ADMIN')">
                     <a class="nav-link" href="/addproduct">Добавить товар </a>
                 </li>
             </ul>
@@ -62,7 +62,7 @@
         </div>
     </nav>
 
-    <div th:if="${message}" class="alert alert-danger" role="alert">
+    <div th:if="${message}" class="alert alert-danger mt-2" role="alert">
         <p th:text="${message}"/>
     </div>
 
