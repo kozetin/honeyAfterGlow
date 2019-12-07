@@ -6,9 +6,9 @@ import com.kozetin.honeyAfterGlow.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/users")
@@ -29,5 +29,14 @@ public class UsersController {
         model.addAttribute("roles", Role.values());
 
         return "userEdit";
+    }
+
+    @PostMapping
+    public String userEdit(@RequestParam String email, @RequestParam Map<String, String> form, @RequestParam("userId") User user) {
+
+        //there will be userservice function
+
+        return "redirect:/users";
+
     }
 }
