@@ -18,8 +18,9 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
-        if (!userService.addUser(user)) {
-            model.addAttribute("message","Пользователь с таким Email уже зарегистрирован");
+        String addUserMessage = userService.addUser(user);
+        if (!addUserMessage.equals("OK")) {
+            model.addAttribute("message",addUserMessage);
             return "registration";
         }
 
