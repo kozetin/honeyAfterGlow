@@ -25,18 +25,35 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public Boolean addUser(User user) {
+    public String addUser(User user) {
+
+        if (user.getEmail().isEmpty() || user.getEmail()==null) {
+            return "Введите значение в поле Адресс электронной почты";
+        }
+
         User userFromDb = userRepository.findByEmail(user.getEmail());
 
         if (userFromDb != null) {
-            return false;
+            return "Пользователь с таким Email уже зарегистрирован";
+        }
+
+        if (user.getFirstName().isEmpty() || user.getFirstName()==null) {
+            return "Введите значение в поле Имя";
+        }
+
+        if (user.getLastName().isEmpty() || user.getLastName()==null) {
+            return "Введите значение в поле Фамилия";
+        }
+
+        if (user.getPassword().isEmpty() || user.getPassword()==null) {
+            return "Введите значение в поле Пароль";
         }
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
 
-        return true;
+        return "OK";
     }
 
     public Boolean editUser (String email, Map<String,String> form, User user) {
