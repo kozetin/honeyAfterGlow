@@ -26,13 +26,14 @@ public class UserService implements UserDetailsService {
     }
 
     public String addUser(User user) {
-
+        //email validation
         if (user.getEmail().isEmpty() || user.getEmail()==null) {
             return "Введите значение в поле Адресс электронной почты";
-        }
+        }//
 
         User userFromDb = userRepository.findByEmail(user.getEmail());
 
+        //registration data validation
         if (userFromDb != null) {
             return "Пользователь с таким Email уже зарегистрирован";
         }
@@ -48,6 +49,7 @@ public class UserService implements UserDetailsService {
         if (user.getPassword().isEmpty() || user.getPassword()==null) {
             return "Введите значение в поле Пароль";
         }
+        //
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
@@ -57,7 +59,7 @@ public class UserService implements UserDetailsService {
     }
 
     public Boolean editUser (String email, Map<String,String> form, User user) {
-        if (email.isEmpty() || email==null) { return false; } else {
+        if (email.isEmpty()) { return false; } else {
             user.setEmail(email);
         }
 
