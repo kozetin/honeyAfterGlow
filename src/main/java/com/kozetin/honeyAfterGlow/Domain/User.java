@@ -15,6 +15,8 @@ public class User implements UserDetails {
     private Long id;
 
     private String email;
+    private String firstName;
+    private String lastName;
     private String password;
     private boolean active;
 
@@ -57,6 +59,22 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
