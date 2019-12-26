@@ -16,5 +16,5 @@ public class Product {
     private String type;
     private Integer price;
     private Set<String> tags;
-    
+
 }
