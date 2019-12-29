@@ -1,7 +1,6 @@
 package com.kozetin.honeyAfterGlow.Domain;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -15,7 +14,6 @@ public class Product {
     private String imageSource;
     private String type;
     private Integer price;
-    private Set<String> tags;
 
     public Long getId() {
         return id;
@@ -65,11 +63,4 @@ public class Product {
         this.price = price;
     }
 
-    public Set<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(Set<String> tags) {
-        this.tags = tags;
-    }
 }
